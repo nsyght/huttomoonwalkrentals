@@ -54,7 +54,7 @@
     Cache-Control = "public, max-age=86400"
     Content-Type = "text/plain; charset=utf-8"
 
-# Redirects: clean URLs for neighborhood pages
+# Redirects: clean URLs for all 14 neighborhood pages
 [[redirects]]
   from = "/star-ranch"
   to = "/star-ranch.html"
@@ -66,13 +66,53 @@
   status = 200
 
 [[redirects]]
+  from = "/emory-crossing"
+  to = "/emory-crossing.html"
+  status = 200
+
+[[redirects]]
   from = "/brookfield"
   to = "/brookfield.html"
   status = 200
 
 [[redirects]]
+  from = "/carmel-creek"
+  to = "/carmel-creek.html"
+  status = 200
+
+[[redirects]]
+  from = "/cross-creek"
+  to = "/cross-creek.html"
+  status = 200
+
+[[redirects]]
+  from = "/mustang-creek"
+  to = "/mustang-creek.html"
+  status = 200
+
+[[redirects]]
+  from = "/riverwalk"
+  to = "/riverwalk.html"
+  status = 200
+
+[[redirects]]
   from = "/highlands"
   to = "/highlands.html"
+  status = 200
+
+[[redirects]]
+  from = "/hutto-highlands"
+  to = "/hutto-highlands.html"
+  status = 200
+
+[[redirects]]
+  from = "/mager-meadows"
+  to = "/mager-meadows.html"
+  status = 200
+
+[[redirects]]
+  from = "/legends-of-hutto"
+  to = "/legends-of-hutto.html"
   status = 200
 
 [[redirects]]

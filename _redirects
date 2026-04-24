@@ -1,8 +1,16 @@
-# Clean URLs for neighborhood pages
+# Clean URLs for all neighborhood pages
 /star-ranch         /star-ranch.html         200
 /emory-farms        /emory-farms.html        200
+/emory-crossing     /emory-crossing.html     200
 /brookfield         /brookfield.html         200
+/carmel-creek       /carmel-creek.html       200
+/cross-creek        /cross-creek.html        200
+/mustang-creek      /mustang-creek.html      200
+/riverwalk          /riverwalk.html          200
 /highlands          /highlands.html          200
+/hutto-highlands    /hutto-highlands.html    200
+/mager-meadows      /mager-meadows.html      200
+/legends-of-hutto   /legends-of-hutto.html   200
 /stone-oak          /stone-oak.html          200
 /downtown-hutto     /downtown-hutto.html     200
 
