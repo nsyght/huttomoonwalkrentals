@@ -57,6 +57,30 @@
   },
   "sameAs": ["https://www.jump-aroundpartyrentals.com"]
 }
+
+// Delivery zone map tooltips
+(function(){
+  var tip = document.getElementById('mapTooltip');
+  var wrap = document.getElementById('mapWrap');
+  if (!tip || !wrap) return;
+  document.querySelectorAll('.map-pin').forEach(function(pin) {
+    pin.addEventListener('mouseenter', function() {
+      tip.innerHTML = '<strong>' + pin.dataset.name + '</strong><span>' + pin.dataset.info + '</span>';
+      tip.classList.add('show');
+    });
+    pin.addEventListener('mousemove', function(e) {
+      var rect = wrap.getBoundingClientRect();
+      var x = e.clientX - rect.left + 14;
+      var y = e.clientY - rect.top - 10;
+      if (x + 200 > rect.width) x = e.clientX - rect.left - 185;
+      tip.style.left = x + 'px';
+      tip.style.top = y + 'px';
+    });
+    pin.addEventListener('mouseleave', function() {
+      tip.classList.remove('show');
+    });
+  });
+})();
 </script>
 
 <!-- SCHEMA 2: DefinedTermSet -->
@@ -337,6 +361,22 @@
   @media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}.type-grid{grid-template-columns:1fr 1fr;}.faq-col-grid{grid-template-columns:1fr;}}
   @media(max-width:768px){.nav-links,.nav-dropdown,.nav-phone,.btn-book{display:none;}.hamburger{display:flex;}.footer-top{grid-template-columns:1fr;}.form-grid{grid-template-columns:1fr;}.mobile-cta-bar{display:block;}body{padding-bottom:78px;}}
   @media(max-width:480px){.type-grid{grid-template-columns:1fr;}.hero-ctas{flex-direction:column;align-items:center;}.facts-dl{grid-template-columns:1fr;}}
+  .space-pill{background:#fff3cd;color:#856404;font-size:11px;font-weight:800;padding:3px 10px;border-radius:50px;border:1px solid #ffc107;}
+
+  /* DELIVERY MAP */
+  .map-section{background:#fff;padding:56px 24px;}
+  .map-outer{max-width:860px;margin:0 auto;}
+  .map-svg-wrap{position:relative;width:100%;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+  .map-svg-wrap svg{width:100%;display:block;}
+  .map-pin{cursor:pointer;}
+  .map-pin circle.outer{transition:r .15s;}
+  .map-pin:hover circle.outer{r:13;}
+  .map-tooltip{position:absolute;background:var(--blue);color:var(--white);font-size:12px;font-weight:700;padding:7px 12px;border-radius:10px;pointer-events:none;opacity:0;transition:opacity .15s;white-space:nowrap;border:1px solid rgba(245,166,35,.4);z-index:10;line-height:1.5;}
+  .map-tooltip.show{opacity:1;}
+  .map-tooltip span{display:block;font-size:11px;font-weight:400;color:rgba(255,255,255,.65);}
+  .map-legend{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:14px;font-size:13px;color:var(--gray);}
+  .map-legend-item{display:flex;align-items:center;gap:7px;}
+  .map-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -422,8 +462,10 @@
     <div class="hero-badge">🦛 Hutto TX 78634 - Hippo Capital of Texas</div>
     <h1>Moonwalk Rentals<br><span>Hutto, TX</span></h1>
     <p class="hero-sub">Hutto's bounce house and moonwalk rental source. Delivered and set up at your Hutto address. Serving Star Ranch, Emory Farms, Brookfield, Downtown Hutto and all of 78634.</p>
+    <div style="display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;"><span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:var(--white);font-family:'Fredoka One',cursive;font-size:14px;padding:6px 16px;border-radius:50px;">🎪 Moonwalks from $150</span><span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:var(--white);font-family:'Fredoka One',cursive;font-size:14px;padding:6px 16px;border-radius:50px;">🎉 Combos from $225</span><span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:var(--white);font-family:'Fredoka One',cursive;font-size:14px;padding:6px 16px;border-radius:50px;">💧 Water Slides from $200</span></div>
     <div class="hero-ctas">
       <a href="https://www.jump-aroundpartyrentals.com/category/" target="_blank" rel="noopener" class="btn-primary">🎉 Book Your Moonwalk</a>
+      <p style="font-size:11px;color:rgba(255,255,255,.6);text-align:center;margin-top:6px;letter-spacing:.01em;">Booking fulfilled by Jump Around Party Rentals</p>
       <a href="#quote" class="btn-secondary">📋 Free Quote</a>
     </div>
   </div>
@@ -516,7 +558,7 @@
       <div class="unit-card">
         <div class="unit-img-wrap"><img src="images/moonwalk.jpg" alt="Standard moonwalk bounce house rental in Hutto TX 78634" loading="lazy"><div class="unit-tag">Most Popular</div></div>
         <div class="unit-body">
-          <div class="unit-name">Standard Moonwalk</div>
+          <div class="unit-name">Standard Moonwalk <span class="space-pill">📐 15′ × 15′</span></div>
           <p class="unit-desc">The classic Texas bounce house. Pure jumping fun for kids 3-12. Fits most Hutto backyard lots in Star Ranch, Emory Farms, Brookfield and throughout 78634.</p>
           <div class="unit-features"><span class="feature-pill">Ages 3-12</span><span class="feature-pill">Grass or concrete</span><span class="feature-pill">Delivery included</span><span class="feature-pill">Full-day rental</span></div>
           <a href="contact.html" class="btn-unit">Get a Quote for Hutto TX</a>
@@ -525,7 +567,7 @@
       <div class="unit-card">
         <div class="unit-img-wrap"><img src="images/combo.jpg" alt="Combo bounce house rental Hutto TX - sports theme with slide" loading="lazy"><div class="unit-tag">Top Pick</div></div>
         <div class="unit-body">
-          <div class="unit-name">Combo Bounce House</div>
+          <div class="unit-name">Combo Bounce House <span class="space-pill">📐 20′ × 25′</span></div>
           <p class="unit-desc">A jump house and slide in one inflatable footprint. The most-booked moonwalk rental in Hutto TX. Available wet or dry for Hutto backyard parties in 78634.</p>
           <div class="unit-features"><span class="feature-pill">Wet or dry</span><span class="feature-pill">Built-in slide</span><span class="feature-pill">All season</span><span class="feature-pill">Delivery included</span></div>
           <a href="combo-bounce-house-rentals.html" class="btn-unit">See Combo Bounce Houses</a>
@@ -534,7 +576,7 @@
       <div class="unit-card">
         <div class="unit-img-wrap"><img src="images/waterslide.jpg" alt="Inflatable water slide rental Hutto TX - dual lane blue wave slide" loading="lazy"><div class="unit-tag">Summer Favorite</div></div>
         <div class="unit-body">
-          <div class="unit-name">Water Slide Rental</div>
+          <div class="unit-name">Water Slide Rental <span class="space-pill">📐 15′ × 40′</span></div>
           <p class="unit-desc">Inflatable water slides 13-20+ feet for Hutto TX summer parties. Single-lane and dual-lane options. The top moonwalk rental category in Hutto TX from March through October.</p>
           <div class="unit-features"><span class="feature-pill">13-20+ feet</span><span class="feature-pill">Single or dual lane</span><span class="feature-pill">Splash pool</span><span class="feature-pill">Peak season</span></div>
           <a href="water-slide-rentals.html" class="btn-unit">See Hutto Water Slides</a>
@@ -543,7 +585,7 @@
       <div class="unit-card">
         <div class="unit-img-wrap"><img src="images/obstacle.jpg" alt="Inflatable obstacle course rental Hutto TX - pirate ship theme" loading="lazy"><div class="unit-tag">Events &amp; Carnivals</div></div>
         <div class="unit-body">
-          <div class="unit-name">Obstacle Course</div>
+          <div class="unit-name">Obstacle Course <span class="space-pill">📐 15′ × 60′</span></div>
           <p class="unit-desc">Multi-section inflatable obstacle courses for Hutto ISD school carnivals, church festivals, HOA block parties and community gatherings in Hutto TX 78634.</p>
           <div class="unit-features"><span class="feature-pill">All ages</span><span class="feature-pill">Hutto ISD events</span><span class="feature-pill">Large footprint</span><span class="feature-pill">Crew setup</span></div>
           <a href="contact.html" class="btn-unit">Get a Quote for Hutto TX</a>
@@ -579,6 +621,60 @@
       <a href="stone-oak.html" class="nbhd-card" style="color:inherit;"><strong>🌳 Stone Oak</strong><span>Established neighborhood, 78634</span></a>
       <a href="downtown-hutto.html" class="nbhd-card" style="color:inherit;"><strong>🦛 Downtown Hutto</strong><span>Co-op District, Fritz Park area</span></a>
     </div>
+    
+    <!-- DELIVERY ZONE MAP -->
+    <div style="margin-bottom:32px;">
+      <div class="section-label" style="margin-top:32px;">Hutto TX Delivery Map</div>
+      <h3 style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--blue);margin-bottom:8px;">We Deliver to Every <span style="color:var(--red);">Hutto Neighborhood</span></h3>
+      <p style="font-size:14px;color:var(--gray);margin-bottom:18px;">Hover any pin to see neighborhood details. All 14 Hutto TX 78634 neighborhoods within our primary delivery zone.</p>
+      <div style="position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);" id="mapWrap">
+        <svg viewBox="0 0 680 500" role="img" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <title>Hutto TX 78634 moonwalk rental delivery zone map showing all 14 neighborhoods</title>
+          <desc>Stylized map of Hutto TX 78634 showing all neighborhoods served by Hutto Moonwalk Rentals including Star Ranch, Emory Farms, Brookfield, Downtown Hutto and 10 more communities.</desc>
+          <rect x="0" y="0" width="680" height="500" fill="#f7f8fc"/>
+          <line x1="490" y1="20" x2="490" y2="480" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="7 3" opacity=".6"/>
+          <line x1="20" y1="250" x2="660" y2="250" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="7 3" opacity=".6"/>
+          <line x1="20" y1="330" x2="660" y2="330" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 4" opacity=".4"/>
+          <path d="M20 405 Q120 385 210 405 Q295 422 375 402 Q450 385 540 398 Q610 408 660 398" fill="none" stroke="#3B8BD4" stroke-width="2.5" opacity=".4"/>
+          <text x="496" y="38" font-size="9" fill="#94a3b8" font-family="'Nunito',sans-serif">FM 685</text>
+          <text x="26" y="244" font-size="9" fill="#94a3b8" font-family="'Nunito',sans-serif">Limmer Loop</text>
+          <text x="26" y="324" font-size="9" fill="#94a3b8" font-family="'Nunito',sans-serif">Ed Schmidt Blvd</text>
+          <text x="210" y="422" font-size="9" fill="#3B8BD4" font-family="'Nunito',sans-serif" opacity=".7">Brushy Creek</text>
+          <circle cx="335" cy="248" r="205" fill="#f5a623" opacity=".05"/>
+          <circle cx="335" cy="248" r="205" fill="none" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="8 4" opacity=".5"/>
+          <path d="M155 72 L520 72 L568 112 L585 195 L575 355 L525 425 L440 450 L195 450 L145 412 L118 335 L112 195 Z" fill="#1a1a2e" opacity=".025" stroke="#1a1a2e" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="260" y="300" font-size="52" fill="#1a1a2e" font-family="'Fredoka One',cursive" opacity=".035">78634</text>
+          <ellipse cx="445" cy="362" rx="22" ry="12" fill="#B5D4F4" opacity=".7"/>
+          <text x="445" y="366" text-anchor="middle" font-size="9" fill="#185FA5" font-family="'Nunito',sans-serif" font-weight="700">Lake Park</text>
+          <rect x="358" y="284" width="46" height="22" rx="4" fill="#e2e8f0" opacity=".7"/>
+          <text x="381" y="299" text-anchor="middle" font-size="9" fill="#64748b" font-family="'Nunito',sans-serif">Hutto ISD</text>
+          <text x="572" y="62" font-size="10" fill="#f5a623" font-family="'Nunito',sans-serif" font-weight="700" opacity=".85">delivery zone</text>
+          <line x1="562" y1="58" x2="536" y2="46" stroke="#f5a623" stroke-width="0.8" opacity=".6"/>
+          <g class="map-pin" data-name="Downtown Hutto" data-info="Co-op District · Fritz Park · Hippo Statues"><circle cx="278" cy="242" r="18" fill="#e94560" opacity=".15"/><circle cx="278" cy="242" r="9" fill="#e94560"/><text x="278" y="246" text-anchor="middle" font-size="11" fill="#fff" font-family="'Nunito',sans-serif" font-weight="800">🦛</text></g>
+          <g class="map-pin" data-name="Star Ranch" data-info="Golf Club · FM 685 · CR 193"><circle cx="502" cy="305" r="11" fill="#f5a623" opacity=".2"/><circle cx="502" cy="305" r="6" fill="#f5a623"/><text x="502" y="295" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Star Ranch</text></g>
+          <g class="map-pin" data-name="Highlands at Star Ranch" data-info="Elevated section · Larger lots"><circle cx="534" cy="232" r="11" fill="#f5a623" opacity=".2"/><circle cx="534" cy="232" r="6" fill="#f5a623"/><text x="534" y="222" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Highlands</text></g>
+          <g class="map-pin" data-name="Emory Farms" data-info="Family neighborhood · Active HOA"><circle cx="418" cy="193" r="11" fill="#f5a623" opacity=".2"/><circle cx="418" cy="193" r="6" fill="#f5a623"/><text x="418" y="183" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Emory Farms</text></g>
+          <g class="map-pin" data-name="Emory Crossing" data-info="Near Emory area · 78634"><circle cx="452" cy="144" r="11" fill="#f5a623" opacity=".2"/><circle cx="452" cy="144" r="6" fill="#f5a623"/><text x="452" y="134" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Emory Crossing</text></g>
+          <g class="map-pin" data-name="Brookfield" data-info="Growing community · 78634"><circle cx="318" cy="178" r="11" fill="#f5a623" opacity=".2"/><circle cx="318" cy="178" r="6" fill="#f5a623"/><text x="318" y="168" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Brookfield</text></g>
+          <g class="map-pin" data-name="Stone Oak" data-info="Established neighborhood · 78634"><circle cx="192" cy="193" r="11" fill="#f5a623" opacity=".2"/><circle cx="192" cy="193" r="6" fill="#f5a623"/><text x="192" y="183" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Stone Oak</text></g>
+          <g class="map-pin" data-name="Carmel Creek" data-info="North Hutto · Creek area"><circle cx="355" cy="108" r="11" fill="#f5a623" opacity=".2"/><circle cx="355" cy="108" r="6" fill="#f5a623"/><text x="355" y="98" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Carmel Creek</text></g>
+          <g class="map-pin" data-name="Mustang Creek" data-info="Northwest Hutto · 78634"><circle cx="208" cy="128" r="11" fill="#f5a623" opacity=".2"/><circle cx="208" cy="128" r="6" fill="#f5a623"/><text x="208" y="118" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Mustang Creek</text></g>
+          <g class="map-pin" data-name="Cross Creek" data-info="East Hutto · Near FM 685"><circle cx="475" cy="282" r="11" fill="#f5a623" opacity=".2"/><circle cx="475" cy="282" r="6" fill="#f5a623"/><text x="475" y="272" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Cross Creek</text></g>
+          <g class="map-pin" data-name="Riverwalk" data-info="Near Brushy Creek · South Hutto"><circle cx="342" cy="376" r="11" fill="#f5a623" opacity=".2"/><circle cx="342" cy="376" r="6" fill="#f5a623"/><text x="342" y="393" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Riverwalk</text></g>
+          <g class="map-pin" data-name="Hutto Highlands" data-info="Northeast area · 78634"><circle cx="542" cy="144" r="11" fill="#f5a623" opacity=".2"/><circle cx="542" cy="144" r="6" fill="#f5a623"/><text x="574" y="148" text-anchor="start" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Hutto Highlands</text></g>
+          <g class="map-pin" data-name="Mager Meadows" data-info="West Hutto · Meadow community"><circle cx="150" cy="290" r="11" fill="#f5a623" opacity=".2"/><circle cx="150" cy="290" r="6" fill="#f5a623"/><text x="118" y="294" text-anchor="end" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Mager Meadows</text></g>
+          <g class="map-pin" data-name="Legends of Hutto" data-info="South Hutto community"><circle cx="248" cy="354" r="11" fill="#f5a623" opacity=".2"/><circle cx="248" cy="354" r="6" fill="#f5a623"/><text x="198" y="358" text-anchor="end" font-size="9" fill="#1a1a2e" font-family="'Nunito',sans-serif" font-weight="700">Legends of Hutto</text></g>
+        </svg>
+        <div id="mapTooltip" style="position:absolute;background:#1a1a2e;color:#fff;font-size:12px;font-weight:700;padding:7px 12px;border-radius:10px;pointer-events:none;opacity:0;transition:opacity .15s;white-space:nowrap;border:1px solid rgba(245,166,35,.4);z-index:10;line-height:1.6;"></div>
+      </div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:14px;font-size:12px;color:var(--gray);">
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--red);display:inline-block;"></span>Downtown Hutto hub</span>
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--yellow);display:inline-block;"></span>14 neighborhoods</span>
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:18px;height:2px;background:#3B8BD4;display:inline-block;border-radius:2px;"></span>Brushy Creek</span>
+        <span style="display:flex;align-items:center;gap:6px;"><svg width="18" height="4"><line x1="0" y1="2" x2="18" y2="2" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="4 2"/></svg>Delivery zone</span>
+      </div>
+    </div>
+
     <div class="zip-density">
       <h3>Hutto TX Service Area - Zip Code Coverage</h3>
       <div class="zip-grid">
@@ -653,7 +749,7 @@
           <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Jane Smith" required></div>
           <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(512) 555-0100" required></div>
           <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="jane@email.com" required></div>
-          <div class="form-group"><label for="date">Party Date</label><input type="date" id="date" name="party-date" required></div>
+          <div class="form-group"><label for="date">Party Date <span style="font-size:11px;color:var(--red);font-weight:600;">(Summer Saturdays book 3-4 weeks out)</span></label><input type="date" id="date" name="party-date" required></div>
           <div class="form-group">
             <label for="neighborhood">Hutto Neighborhood</label>
             <select id="neighborhood" name="neighborhood">

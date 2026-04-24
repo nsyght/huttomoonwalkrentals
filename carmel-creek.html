@@ -154,6 +154,18 @@
     body{padding-bottom:78px;}
   }
   @media(max-width:480px){.facts-dl{grid-template-columns:1fr 1fr;}}
+
+  /* GALLERY */
+  .gallery-section{background:var(--gray-light);padding:48px 24px;}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .gallery-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative;background:var(--blue);}
+  .gallery-card img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .4s;}
+  .gallery-card:hover img{transform:scale(1.05);}
+  .gallery-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(26,26,46,.85));padding:28px 14px 12px;color:var(--white);}
+  .gallery-label strong{display:block;font-family:'Fredoka One',cursive;font-size:15px;}
+  .gallery-label span{font-size:12px;opacity:.8;}
+  @media(max-width:600px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+
 </style>
 </head>
 <body>
@@ -169,7 +181,7 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <div class="nav-dropdown">
-      <a href="#>Rentals</a>
+      <a href="#">Rentals</a>
       <div class="dropdown-menu">
         <a href="water-slide-rentals.html">💧 Water Slide Rentals</a>
         <a href="combo-bounce-house-rentals.html">🎉 Combo Bounce Houses</a>
@@ -306,6 +318,31 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+<section class="gallery-section">
+  <div class="section-inner">
+    <div class="section-label">Our Equipment</div>
+    <h2 class="section-title">Rentals Delivered to <span>Carmel Creek</span></h2>
+    <p class="section-sub" style="margin-bottom:24px;">Real photos of equipment delivered to Hutto TX backyards and events. All rentals provided by Jump Around Party Rentals, fully licensed and insured in Williamson County and Travis County, Texas.</p>
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <img src="images/waterslide-blue-dual.jpg" alt="Blue marble dual lane water slide rental Hutto TX 78634" loading="lazy">
+        <div class="gallery-label"><strong>💧 Blue Wave Slide</strong><span>Summer favorite</span></div>
+      </div>
+      <div class="gallery-card">
+        <img src="images/combo-castle.jpg" alt="Castle combo bounce house rental Hutto TX with slide" loading="lazy">
+        <div class="gallery-label"><strong>🎉 Combo Unit</strong><span>Bounce + slide</span></div>
+      </div>
+      <div class="gallery-card">
+        <img src="images/moonwalk-birthday.jpg" alt="Happy Birthday bounce house rental Hutto TX 78634" loading="lazy">
+        <div class="gallery-label"><strong>🎪 Bounce House</strong><span>Perfect for birthdays</span></div>
+      </div>
+    </div>
+    <div style="margin-top:20px;text-align:center;">
+      <a href="contact.html" class="btn-primary">📋 Get a Free Quote</a>
+      <p style="font-size:13px;color:var(--gray);margin-top:10px;">Booking fulfilled by Jump Around Party Rentals &bull; Summer Saturdays book 3-4 weeks in advance</p>
     </div>
   </div>
 </section>
