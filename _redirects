@@ -1,0 +1,10 @@
+# Clean URLs for neighborhood pages
+/star-ranch         /star-ranch.html         200
+/emory-farms        /emory-farms.html        200
+/brookfield         /brookfield.html         200
+/highlands          /highlands.html          200
+/stone-oak          /stone-oak.html          200
+/downtown-hutto     /downtown-hutto.html     200
+
+# Catch-all 404
+/*                  /404.html                404
