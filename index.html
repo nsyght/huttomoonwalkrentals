@@ -346,7 +346,7 @@
   .form-note{text-align:center;font-size:12px;color:var(--gray);}
   footer{background:#0d0d1a;padding:48px 24px 24px;}
   .footer-inner{max-width:1100px;margin:0 auto;}
-  .footer-top{display:grid;grid-template-columns:2fr 1fr 2fr 1fr;gap:28px;margin-bottom:36px;}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:28px;margin-bottom:36px;}
   .footer-brand p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;margin-top:8px;}
   .footer-col h4{font-family:'Fredoka One',cursive;font-size:15px;color:var(--yellow);margin-bottom:12px;}
   .footer-col ul{list-style:none;}
@@ -360,7 +360,7 @@
   .mobile-cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .mob-cta-call{background:var(--red);color:var(--white);font-family:'Fredoka One',cursive;font-size:16px;padding:13px;border-radius:50px;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;}
   .mob-cta-quote{background:var(--yellow);color:var(--blue);font-family:'Fredoka One',cursive;font-size:16px;padding:13px;border-radius:50px;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;}
-  @media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}.type-grid{grid-template-columns:1fr 1fr;}.faq-col-grid{grid-template-columns:1fr;}}
+  @media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr 1fr;}.type-grid{grid-template-columns:1fr 1fr;}.faq-col-grid{grid-template-columns:1fr;}}
   @media(max-width:768px){.nav-links,.nav-dropdown,.nav-phone,.btn-book{display:none;}.hamburger{display:flex;}.footer-top{grid-template-columns:1fr;}.form-grid{grid-template-columns:1fr;}.mobile-cta-bar{display:block;}body{padding-bottom:78px;}}
   @media(max-width:480px){.type-grid{grid-template-columns:1fr;}.hero-ctas{flex-direction:column;align-items:center;}.facts-dl{grid-template-columns:1fr;}}
   .space-pill{background:#fff3cd;color:#856404;font-size:11px;font-weight:800;padding:3px 10px;border-radius:50px;border:1px solid #ffc107;}
@@ -785,7 +785,7 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-top">
+        <div class="footer-top">
       <div class="footer-brand">
         <div style="font-family:'Fredoka One',cursive;font-size:22px;color:#fff;margin-bottom:8px;">Hutto <span style="color:var(--red);">Moonwalk</span> Rentals</div>
         <p>Hutto TX 78634's bounce house and moonwalk rental source. All rentals provided by Jump Around Party Rentals, who is fully licensed and insured in Williamson County and Travis County, Texas.</p>
@@ -798,9 +798,9 @@
           <li><a href="https://www.jump-aroundpartyrentals.com/category/" target="_blank">Full Inventory at Jump Around</a></li>
         </ul>
       </div>
-            <div class="footer-col" style="grid-column:span 2;">
+      <div class="footer-col">
         <h4>Hutto Neighborhoods</h4>
-        <ul style="display:grid;grid-template-columns:1fr 1fr;gap:0 16px;">
+        <ul>
           <li><a href="star-ranch.html">Star Ranch</a></li>
           <li><a href="emory-farms.html">Emory Farms</a></li>
           <li><a href="emory-crossing.html">Emory Crossing</a></li>
@@ -808,6 +808,11 @@
           <li><a href="carmel-creek.html">Carmel Creek</a></li>
           <li><a href="cross-creek.html">Cross Creek</a></li>
           <li><a href="mustang-creek.html">Mustang Creek</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>&nbsp;</h4>
+        <ul>
           <li><a href="riverwalk.html">Riverwalk</a></li>
           <li><a href="highlands.html">Highlands at Star Ranch</a></li>
           <li><a href="hutto-highlands.html">Hutto Highlands</a></li>
@@ -822,8 +827,8 @@
         <ul>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact and Quote</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#how-to-book">How to Book</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#how-to-book">How to Book</a></li>
         </ul>
       </div>
     </div>
