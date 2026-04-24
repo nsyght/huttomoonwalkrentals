@@ -205,11 +205,8 @@
   .nav-dropdown>a{font-size:14px;font-weight:700;color:var(--blue);padding:8px 12px;border-radius:8px;cursor:pointer;display:block;}
   .nav-dropdown>a::after{content:'▾';margin-left:4px;font-size:10px;}
   .dropdown-menu{display:none;position:absolute;top:100%;left:auto;background:var(--white);border:1px solid #e2e8f0;border-radius:12px;box-shadow:var(--shadow);min-width:230px;padding:8px;z-index:200;}
-  .nav-dropdown:hover .dropdown-menu{display:block;}
-  .nav-dropdown.nbhd-drop{position:relative;}
-  .nav-dropdown.nbhd-drop .dropdown-menu{min-width:380px;display:none;grid-template-columns:1fr 1fr;gap:0;left:50%;transform:translateX(-50%);}
-  .nav-dropdown.nbhd-drop:hover .dropdown-menu{display:grid;}
-  .nav-dropdown:hover .dropdown-menu{display:block;}
+  .nav-dropdown:hover
+  .nav-dropdown:hover
   .dropdown-menu a{display:block;padding:10px 14px;font-size:13px;font-weight:700;color:var(--blue);border-radius:8px;}
   .dropdown-menu a:hover{background:#f0f0f8;}
   .nav-right{display:flex;align-items:center;gap:10px;}
@@ -383,6 +380,17 @@
   .map-legend{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:14px;font-size:13px;color:var(--gray);}
   .map-legend-item{display:flex;align-items:center;gap:7px;}
   .map-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+  /* Neighborhoods mega-dropdown */
+  .nbhd-drop{position:relative;}
+  .nbhd-drop .dropdown-menu{
+    display:none;
+    grid-template-columns:1fr 1fr;
+    min-width:360px;
+    right:0;
+    left:auto;
+  }
+  .nbhd-drop:hover .dropdown-menu{display:grid;}
 </style>
 </head>
 <body>

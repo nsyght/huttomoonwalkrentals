@@ -47,10 +47,9 @@
   .nav-dropdown>a{font-size:13px;font-weight:700;color:var(--blue);padding:7px 10px;border-radius:8px;cursor:pointer;}
   .nav-dropdown>a::after{content:'▾';margin-left:3px;font-size:10px;}
   .dropdown-menu{display:none;position:absolute;top:100%;left:0;background:var(--white);border:1px solid #e2e8f0;border-radius:12px;box-shadow:var(--shadow);min-width:200px;padding:6px;z-index:200;}
-  .dropdown-menu.dropdown-wide{min-width:380px;display:none;flex-direction:row;gap:4px;padding:8px;}
   .dropdown-col{flex:1;}
-  .nav-dropdown:hover .dropdown-menu{display:block;}
-  .nav-dropdown:hover .dropdown-menu.dropdown-wide{display:flex;}
+  .nav-dropdown:hover
+  .nav-dropdown:hover
   .dropdown-menu a{display:block;padding:8px 10px;font-size:12px;font-weight:700;color:var(--blue);border-radius:8px;}
   .dropdown-menu a:hover{background:#f0f0f8;}
   .nav-right{display:flex;align-items:center;gap:8px;}
@@ -168,6 +167,17 @@
   .gallery-label span{font-size:12px;opacity:.8;}
   @media(max-width:600px){.gallery-grid{grid-template-columns:1fr 1fr;}}
 
+
+  /* Neighborhoods mega-dropdown */
+  .nbhd-drop{position:relative;}
+  .nbhd-drop .dropdown-menu{
+    display:none;
+    grid-template-columns:1fr 1fr;
+    min-width:360px;
+    right:0;
+    left:auto;
+  }
+  .nbhd-drop:hover .dropdown-menu{display:grid;}
 </style>
 </head>
 <body>
